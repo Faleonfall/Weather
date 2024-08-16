@@ -11,6 +11,8 @@
 		FAE5D38E2C6F17B300827FBF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D38D2C6F17B300827FBF /* ContentView.swift */; };
 		FAE5D3902C6F17B400827FBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE5D38F2C6F17B400827FBF /* Assets.xcassets */; };
 		FAE5D3932C6F17B400827FBF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE5D3922C6F17B400827FBF /* Preview Assets.xcassets */; };
+		FAE5D3A12C6F311000827FBF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D3A02C6F311000827FBF /* Extensions.swift */; };
+		FAE5D3A52C6F35AD00827FBF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D3A42C6F35AD00827FBF /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		FAE5D38D2C6F17B300827FBF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FAE5D38F2C6F17B400827FBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAE5D3922C6F17B400827FBF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FAE5D3A02C6F311000827FBF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FAE5D3A42C6F35AD00827FBF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +56,9 @@
 			isa = PBXGroup;
 			children = (
 				FAE5D38B2C6F17B300827FBF /* WeatherApp.swift */,
-				FAE5D38D2C6F17B300827FBF /* ContentView.swift */,
+				FAE5D39A2C6F2FDF00827FBF /* Models */,
+				FAE5D3992C6F2FD400827FBF /* Views */,
+				FAE5D39B2C6F2FEA00827FBF /* Controllers */,
 				FAE5D38F2C6F17B400827FBF /* Assets.xcassets */,
 				FAE5D3912C6F17B400827FBF /* Preview Content */,
 			);
@@ -65,6 +71,62 @@
 				FAE5D3922C6F17B400827FBF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FAE5D3992C6F2FD400827FBF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FAE5D39C2C6F305C00827FBF /* Main */,
+				FAE5D39D2C6F306400827FBF /* Navigation */,
+				FAE5D39E2C6F306D00827FBF /* Detail */,
+				FAE5D39F2C6F307300827FBF /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FAE5D39A2C6F2FDF00827FBF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FAE5D39B2C6F2FEA00827FBF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FAE5D3A02C6F311000827FBF /* Extensions.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FAE5D39C2C6F305C00827FBF /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				FAE5D38D2C6F17B300827FBF /* ContentView.swift */,
+				FAE5D3A42C6F35AD00827FBF /* HomeView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		FAE5D39D2C6F306400827FBF /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		FAE5D39E2C6F306D00827FBF /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		FAE5D39F2C6F307300827FBF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +200,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAE5D38E2C6F17B300827FBF /* ContentView.swift in Sources */,
+				FAE5D3A52C6F35AD00827FBF /* HomeView.swift in Sources */,
+				FAE5D3A12C6F311000827FBF /* Extensions.swift in Sources */,
 				FAE5D38C2C6F17B300827FBF /* WeatherApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,8 +342,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -287,9 +352,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kvolodymyr.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -307,8 +376,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,9 +386,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kvolodymyr.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
