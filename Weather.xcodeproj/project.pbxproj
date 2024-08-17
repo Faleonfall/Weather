@@ -13,6 +13,7 @@
 		FAE5D3932C6F17B400827FBF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE5D3922C6F17B400827FBF /* Preview Assets.xcassets */; };
 		FAE5D3A12C6F311000827FBF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D3A02C6F311000827FBF /* Extensions.swift */; };
 		FAE5D3A52C6F35AD00827FBF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D3A42C6F35AD00827FBF /* HomeView.swift */; };
+		FAE5D3A72C6FCC7900827FBF /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D3A62C6FCC7900827FBF /* TabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		FAE5D3922C6F17B400827FBF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FAE5D3A02C6F311000827FBF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FAE5D3A42C6F35AD00827FBF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		FAE5D3A62C6FCC7900827FBF /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 		FAE5D39D2C6F306400827FBF /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				FAE5D3A62C6FCC7900827FBF /* TabBar.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				FAE5D3A52C6F35AD00827FBF /* HomeView.swift in Sources */,
 				FAE5D3A12C6F311000827FBF /* Extensions.swift in Sources */,
 				FAE5D38C2C6F17B300827FBF /* WeatherApp.swift in Sources */,
+				FAE5D3A72C6FCC7900827FBF /* TabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

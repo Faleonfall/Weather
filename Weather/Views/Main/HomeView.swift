@@ -9,36 +9,43 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        ZStack {
-            // MARK: Background Color
-            Color.background
-                .ignoresSafeArea()
-            
-            // MARK: Background Image
-            Image("Background")
-                .resizable()
-                .ignoresSafeArea()
-            
-            // MARK: House Image
-            Image("House")
-                .frame(maxHeight: .infinity, alignment: .top)
-                .padding(.top, 257)
-            
-            VStack(spacing: -10) {
-                Text("Berlin")
-                    .font(.largeTitle)
+        NavigationView {
+            ZStack {
+                // MARK: Background Color
+                Color.background
+                    .ignoresSafeArea()
                 
-                VStack {
-                    Text(attributedString)
-                        .multilineTextAlignment(.center)
+                // MARK: Background Image
+                Image("Background")
+                    .resizable()
+                    .ignoresSafeArea()
+                
+                // MARK: House Image
+                Image("House")
+                    .frame(maxHeight: .infinity, alignment: .top)
+                    .padding(.top, 257)
+                
+                VStack(spacing: -10) {
+                    Text("Berlin")
+                        .font(.largeTitle)
                     
-                    Text("H:29°   L:18°")
-                        .font(.title3.weight(.semibold))
+                    VStack {
+                        Text(attributedString)
+                            .multilineTextAlignment(.center)
+                        
+                        Text("H:29°   L:18°")
+                            .font(.title3.weight(.semibold))
+                    }
+                    
+                    Spacer()
                 }
+                .padding(.top, 51)
                 
-                Spacer()
+                // MARK: Tab Bar
+                TabBar(action: {})
+                
             }
-            .padding(.top, 51)
+            .navigationBarHidden(true)
         }
     }
     
