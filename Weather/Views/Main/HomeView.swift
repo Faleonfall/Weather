@@ -1,26 +1,27 @@
-//
-//  HomeView.swift
-//  Weather
-//
-//  Created by Volodymyr Kryvytskyi on 16.08.24.
-//
-
 import SwiftUI
+import BottomSheet
+
+class HomeViewSettings: ObservableObject {
+    @Published var isPresented = false
+    @Published var bottomSheetPosition: BottomSheet.PresentationDetent = .fraction(0.83)  // Default to top position
+}
 
 struct HomeView: View {
+    @StateObject var settings = HomeViewSettings()
+    
     var body: some View {
         NavigationView {
             ZStack {
-                // MARK: Background Color
+                // Background Color
                 Color.background
                     .ignoresSafeArea()
                 
-                // MARK: Background Image
+                // Background Image
                 Image("Background")
                     .resizable()
                     .ignoresSafeArea()
                 
-                // MARK: House Image
+                // House Image
                 Image("House")
                     .frame(maxHeight: .infinity, alignment: .top)
                     .padding(.top, 257)
@@ -41,14 +42,29 @@ struct HomeView: View {
                 }
                 .padding(.top, 51)
                 
-                // MARK: Tab Bar
-                TabBar(action: {})
-                
+                // Tab Bar
+                TabBar(action: {
+                    settings.isPresented = true
+                    settings.bottomSheetPosition = .fraction(0.83)
+                })
             }
+            .sheetPlus(
+                isPresented: $settings.isPresented,
+                background: (
+                    ForecastView()
+                        .presentationDetentsPlus(
+                        [.fraction(0.385), .fraction(0.83)],  // Middle and Top positions
+                        selection: $settings.bottomSheetPosition
+                    )
+                ),
+                main: {
+                    EmptyView()
+                }
+            )
             .navigationBarHidden(true)
         }
+        .environmentObject(settings)
     }
-    
     
     private var attributedString: AttributedString {
         var string = AttributedString("25°" + "\n" + "Clear")
@@ -56,11 +72,6 @@ struct HomeView: View {
         if let temp = string.range(of: "25°") {
             string[temp].font = .system(size: 96, weight: .thin)
             string[temp].foregroundColor = .primary
-        }
-        
-        if let pipe = string.range(of: " | ") {
-            string[pipe].font = .title3.weight(.semibold)
-            string[pipe].foregroundColor = .secondary
         }
         
         if let weather = string.range(of: "Clear") {
