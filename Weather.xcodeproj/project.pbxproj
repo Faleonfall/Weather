@@ -14,6 +14,7 @@
 		FAE5D3A12C6F311000827FBF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D3A02C6F311000827FBF /* Extensions.swift */; };
 		FAE5D3A52C6F35AD00827FBF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D3A42C6F35AD00827FBF /* HomeView.swift */; };
 		FAE5D3A72C6FCC7900827FBF /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D3A62C6FCC7900827FBF /* TabBar.swift */; };
+		FAE5D3A92C75EF4500827FBF /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5D3A82C75EF4500827FBF /* Shapes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		FAE5D3A02C6F311000827FBF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FAE5D3A42C6F35AD00827FBF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FAE5D3A62C6FCC7900827FBF /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		FAE5D3A82C75EF4500827FBF /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				FAE5D3A02C6F311000827FBF /* Extensions.swift */,
+				FAE5D3A82C75EF4500827FBF /* Shapes.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				FAE5D3A12C6F311000827FBF /* Extensions.swift in Sources */,
 				FAE5D38C2C6F17B300827FBF /* WeatherApp.swift in Sources */,
 				FAE5D3A72C6FCC7900827FBF /* TabBar.swift in Sources */,
+				FAE5D3A92C75EF4500827FBF /* Shapes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
