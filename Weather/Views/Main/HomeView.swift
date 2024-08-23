@@ -2,7 +2,7 @@ import SwiftUI
 import BottomSheet
 
 class HomeViewSettings: ObservableObject {
-    @Published var isPresented = false
+    @Published var isPresented = false  // Controls visibility of the sheet
     @Published var bottomSheetPosition: BottomSheet.PresentationDetent = .fraction(0.83)  // Default to top position
 }
 
@@ -41,24 +41,35 @@ struct HomeView: View {
                     Spacer()
                 }
                 .padding(.top, 51)
-                
-                // Tab Bar
-                TabBar(action: {
-                    settings.isPresented = true
-                    settings.bottomSheetPosition = .fraction(0.83)
-                })
             }
             .sheetPlus(
                 isPresented: $settings.isPresented,
                 background: (
                     ForecastView()
                         .presentationDetentsPlus(
-                        [.fraction(0.385), .fraction(0.83)],  // Middle and Top positions
-                        selection: $settings.bottomSheetPosition
-                    )
+                            [.fraction(0.385), .fraction(0.83)],  // Hidden, Middle, and Top positions
+                            selection: $settings.bottomSheetPosition
+                        )
                 ),
                 main: {
                     EmptyView()
+                }
+            )
+            .overlay(
+                VStack {
+                    Spacer() // Pushes the TabBar to the bottom
+                    TabBar(action: {
+                        withAnimation {
+                            if !settings.isPresented {
+                                settings.isPresented = true
+                                settings.bottomSheetPosition = .fraction(0.83)  // Show the sheet at top position
+                            } else if settings.bottomSheetPosition == .fraction(0.83) || settings.bottomSheetPosition == .fraction(0.385) {
+                                settings.bottomSheetPosition = .fraction(0)  // Hide the sheet
+                            } else {
+                                settings.bottomSheetPosition = .fraction(0.83)  // Show the sheet again at top position
+                            }
+                        }
+                    })
                 }
             )
             .navigationBarHidden(true)
