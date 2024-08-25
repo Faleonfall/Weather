@@ -2,8 +2,8 @@ import SwiftUI
 import BottomSheet
 
 class HomeViewSettings: ObservableObject {
-    @Published var isPresented = false  // Controls visibility of the sheet
-    @Published var bottomSheetPosition: BottomSheet.PresentationDetent = .fraction(0.83)  // Default to top position
+    @Published var isPresented = true  // Controls visibility of the sheet
+    @Published var bottomSheetPosition: BottomSheet.PresentationDetent = .fraction(0.385)  // Default to top position
 }
 
 struct HomeView: View {
