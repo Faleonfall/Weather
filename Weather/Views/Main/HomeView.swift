@@ -3,86 +3,122 @@ import BottomSheet
 
 class HomeViewSettings: ObservableObject {
     @Published var isPresented = true  // Controls visibility of the sheet
-    @Published var bottomSheetPosition: BottomSheet.PresentationDetent = .fraction(0.385)  // Default to top position
+    @Published var bottomSheetPosition: BottomSheet.PresentationDetent = .fraction(0.385)  // Default to middle position
 }
 
 struct HomeView: View {
     @StateObject var settings = HomeViewSettings()
+    @State var bottomSheetTranslation: CGFloat = 0.385
+    @State var hasDragged: Bool = false
+    
+    var bottomSheetTranslationProrated: CGFloat {
+        abs((bottomSheetTranslation - 0.385) / (0.83 - 0.385))
+    }
     
     var body: some View {
         NavigationView {
-            ZStack {
-                // Background Color
-                Color.background
-                    .ignoresSafeArea()
+            GeometryReader { geometry in
+                let screenHeight = geometry.size.height + geometry.safeAreaInsets.top + geometry.safeAreaInsets.bottom
                 
-                // Background Image
-                Image("Background")
-                    .resizable()
-                    .ignoresSafeArea()
+                let imageOffset = screenHeight + 36
                 
-                // House Image
-                Image("House")
-                    .frame(maxHeight: .infinity, alignment: .top)
-                    .padding(.top, 257)
-                
-                VStack(spacing: -10) {
-                    Text("Berlin")
-                        .font(.largeTitle)
+                ZStack {
+                    // Background Color
+                    Color.background
+                        .ignoresSafeArea()
                     
-                    VStack {
-                        Text(attributedString)
-                            .multilineTextAlignment(.center)
+                    // Background Image
+                    Image("Background")
+                        .resizable()
+                        .ignoresSafeArea()
+                        .offset(y: -bottomSheetTranslationProrated * imageOffset)
+                    
+                    // House Image
+                    Image("House")
+                        .frame(maxHeight: .infinity, alignment: .top)
+                        .padding(.top, 257)
+                        .offset(y: -bottomSheetTranslationProrated * imageOffset)
+                    
+                    // MARK: Current Weather
+                    VStack(spacing: -10 * (1 - bottomSheetTranslationProrated)) {
+                        Text("Berlin")
+                            .font(.largeTitle)
                         
-                        Text("H:29°   L:18°")
-                            .font(.title3.weight(.semibold))
+                        VStack {
+                            Text(attributedString)
+                                .multilineTextAlignment(.center)
+                            
+                            Text("H:29°   L:18°")
+                                .font(.title3.weight(.semibold))
+                                .opacity(1 - bottomSheetTranslationProrated)
+                        }
+                        
+                        Spacer()
                     }
-                    
-                    Spacer()
+                    .padding(.top, 75)
+                    .offset(y: -bottomSheetTranslationProrated * 46)
                 }
-                .padding(.top, 51)
-            }
-            .sheetPlus(
-                isPresented: $settings.isPresented,
-                background: (
-                    ForecastView()
-                        .presentationDetentsPlus(
-                            [.fraction(0.385), .fraction(0.83)],  // Hidden, Middle, and Top positions
-                            selection: $settings.bottomSheetPosition
-                        )
-                ),
-                main: {
-                    EmptyView()
-                }
-            )
-            .overlay(
-                VStack {
-                    Spacer() // Pushes the TabBar to the bottom
-                    TabBar(action: {
-                        withAnimation {
-                            if !settings.isPresented {
-                                settings.isPresented = true
-                                settings.bottomSheetPosition = .fraction(0.83)  // Show the sheet at top position
-                            } else if settings.bottomSheetPosition == .fraction(0.83) || settings.bottomSheetPosition == .fraction(0.385) {
-                                settings.bottomSheetPosition = .fraction(0)  // Hide the sheet
+                
+                // MARK: Bottom Sheet
+                .sheetPlus(
+                    isPresented: $settings.isPresented,
+                    background: (
+                        ForecastView(bottomSheetTranlationProrated: bottomSheetTranslationProrated)
+                            .presentationDetentsPlus(
+                                [.fraction(0.385), .fraction(0.83)],  // Hidden, Middle, and Top positions
+                                selection: $settings.bottomSheetPosition
+                            )
+                    ),
+                    onDrag: { translation in
+                        bottomSheetTranslation = translation / screenHeight
+                        
+                        withAnimation(.easeInOut) {
+                            if settings.bottomSheetPosition == .fraction(0.83) {
+                                hasDragged = true
                             } else {
-                                settings.bottomSheetPosition = .fraction(0.83)  // Show the sheet again at top position
+                                hasDragged = false
                             }
                         }
-                    })
-                }
-            )
+                        
+                    },
+                    main: {
+                        //EmptyView()
+                        Text(bottomSheetTranslationProrated.formatted())
+                    }
+                )
+                
+                // MARK: Tab Bar
+                .overlay(
+                    VStack {
+                        Spacer() // Pushes the TabBar to the bottom
+                        TabBar(action: {
+                            withAnimation {
+                                if settings.bottomSheetPosition == .fraction(0.385) {
+                                    settings.bottomSheetPosition = .fraction(0.83)
+                                }
+                                settings.isPresented = true  // Ensure the sheet is always presented
+                            }
+                        })
+                        .offset(y: bottomSheetTranslationProrated * 115)
+                    }
+                )
+            }
             .navigationBarHidden(true)
         }
         .environmentObject(settings)
     }
     
     private var attributedString: AttributedString {
-        var string = AttributedString("25°" + "\n" + "Clear")
+        var string = AttributedString("25°" + (hasDragged ? "" : "\n") + "Clear")
         
         if let temp = string.range(of: "25°") {
-            string[temp].font = .system(size: 96, weight: .thin)
-            string[temp].foregroundColor = .primary
+            string[temp].font = .system(size: (96 - (bottomSheetTranslationProrated * (96 - 20))), weight: hasDragged ? .semibold : .thin)
+            string[temp].foregroundColor = hasDragged ? .secondary : .primary
+        }
+        
+        if let pipe = string.range(of: " | ") {
+            string[pipe].font = .title3.weight(.semibold)
+            string[pipe].foregroundColor = .secondary.opacity(bottomSheetTranslationProrated)
         }
         
         if let weather = string.range(of: "Clear") {
