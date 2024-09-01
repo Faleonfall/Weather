@@ -62,13 +62,7 @@ struct HomeView: View {
                 // MARK: Bottom Sheet
                 .sheetPlus(
                     isPresented: $settings.isPresented,
-                    background: (
-                        ForecastView(bottomSheetTranlationProrated: bottomSheetTranslationProrated)
-                            .presentationDetentsPlus(
-                                [.fraction(0.385), .fraction(0.83)],  // Hidden, Middle, and Top positions
-                                selection: $settings.bottomSheetPosition
-                            )
-                    ),
+                    background: (EmptyView()),
                     onDrag: { translation in
                         bottomSheetTranslation = translation / screenHeight
                         
@@ -82,8 +76,11 @@ struct HomeView: View {
                         
                     },
                     main: {
-                        //EmptyView()
-                        Text(bottomSheetTranslationProrated.formatted())
+                        ForecastView(bottomSheetTranlationProrated: bottomSheetTranslationProrated)
+                            .presentationDetentsPlus(
+                                [.fraction(0.385), .fraction(0.83)],  // Hidden, Middle, and Top positions
+                                selection: $settings.bottomSheetPosition
+                            )
                     }
                 )
                 
