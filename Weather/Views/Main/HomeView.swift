@@ -92,6 +92,8 @@ struct HomeView: View {
                             withAnimation {
                                 if settings.bottomSheetPosition == .fraction(0.425) {
                                     settings.bottomSheetPosition = .fraction(0.83)
+                                } else {
+                                    settings.bottomSheetPosition = .fraction(0.425)
                                 }
                                 settings.isPresented = true  // Ensure the sheet is always presented
                             }
