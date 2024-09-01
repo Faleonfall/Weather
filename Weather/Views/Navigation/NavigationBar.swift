@@ -16,7 +16,7 @@ struct NavigationBar: View {
                 // MARK: Back Button
                 Button(
                     action: {
-                        dismiss
+                        dismiss()
                     },
                     label: {
                         HStack(spacing: 5) {
@@ -41,13 +41,13 @@ struct NavigationBar: View {
             }
             .frame(height: 52)
         }
-        .frame(height: 106, alignment: .top)
+        .frame(height: 200, alignment: .top)
         .padding(.horizontal, 16)
-        //.padding(.top, 49)
+        .padding(.top, 49)
         .backgroundBlur(radius: 20, opaque: true)
         .background(Color.navBarBackground)
         .frame(maxHeight: .infinity, alignment: .top)
-        //.ignoresSafeArea()
+        .ignoresSafeArea()
     }
 }
 
