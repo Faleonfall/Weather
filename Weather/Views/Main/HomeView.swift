@@ -3,16 +3,16 @@ import BottomSheet
 
 class HomeViewSettings: ObservableObject {
     @Published var isPresented = true  // Controls visibility of the sheet
-    @Published var bottomSheetPosition: BottomSheet.PresentationDetent = .fraction(0.385)  // Default to middle position
+    @Published var bottomSheetPosition: BottomSheet.PresentationDetent = .fraction(0.425)  // Default to middle position
 }
 
 struct HomeView: View {
     @StateObject var settings = HomeViewSettings()
-    @State var bottomSheetTranslation: CGFloat = 0.385
+    @State var bottomSheetTranslation: CGFloat = 0.425
     @State var hasDragged: Bool = false
     
     var bottomSheetTranslationProrated: CGFloat {
-        abs((bottomSheetTranslation - 0.385) / (0.83 - 0.385))
+        abs((bottomSheetTranslation - 0.425) / (0.83 - 0.425))
     }
     
     var body: some View {
@@ -30,8 +30,8 @@ struct HomeView: View {
                     // Background Image
                     Image("Background")
                         .resizable()
-                        .ignoresSafeArea()
                         .offset(y: -bottomSheetTranslationProrated * imageOffset)
+                        .ignoresSafeArea()
                     
                     // House Image
                     Image("House")
@@ -78,7 +78,7 @@ struct HomeView: View {
                     main: {
                         ForecastView(bottomSheetTranlationProrated: bottomSheetTranslationProrated)
                             .presentationDetentsPlus(
-                                [.fraction(0.385), .fraction(0.83)],  // Hidden, Middle, and Top positions
+                                [.fraction(0.425), .fraction(0.83)],  // Hidden, Middle, and Top positions
                                 selection: $settings.bottomSheetPosition
                             )
                     }
@@ -90,7 +90,7 @@ struct HomeView: View {
                         Spacer() // Pushes the TabBar to the bottom
                         TabBar(action: {
                             withAnimation {
-                                if settings.bottomSheetPosition == .fraction(0.385) {
+                                if settings.bottomSheetPosition == .fraction(0.425) {
                                     settings.bottomSheetPosition = .fraction(0.83)
                                 }
                                 settings.isPresented = true  // Ensure the sheet is always presented
