@@ -1,15 +1,8 @@
-//
-//  TabBar.swift
-//  Weather
-//
-//  Created by Volodymyr Kryvytskyi on 16.08.24.
-//
-
 import SwiftUI
 
 struct TabBar: View {
     var action: () -> Void
-    
+
     var body: some View {
         ZStack {
             // MARK: Arc Shape
@@ -21,25 +14,23 @@ struct TabBar: View {
                     Arc()
                         .stroke(Color.tabBarBorder, lineWidth: 0.5)
                 }
-            
-            
+
             // MARK: Tab Items
             HStack {
                 // MARK: Expand Button
-                
                 Button(
                     action: {
                         action()
                     },
-                    
+
                     label: {
                         Image(systemName: "mappin.and.ellipse")
                             .frame(width: 44, height: 44)
                     }
                 )
-                
+
                 Spacer()
-                
+
                 // MARK: Navigation Button
                 NavigationLink {
                     WeatherView()

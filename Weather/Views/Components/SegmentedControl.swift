@@ -1,40 +1,39 @@
-//
-//  SegmentedControl.swift
-//  Weather
-//
-//  Created by Volodymyr Kryvytskyi on 01.09.24.
-//
-
 import SwiftUI
 
 struct SegmentedControl: View {
     @Binding var selection: Int
-    
+
     var body: some View {
         VStack(spacing: 5) {
             // MARK: Segmented Buttons
             HStack {
-                Button(action: {
-                    withAnimation(.easeInOut(duration: 0.5)) {
-                        selection = 0
+                Button(
+                    action: {
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            selection = 0
+                        }
+                    },
+                    label: {
+                        Text("Hourly Forecast")
                     }
-                }, label: {
-                    Text("Hourly Forecast")
-                })
+                )
                 .frame(minWidth: 0, maxWidth: .infinity)
-                
-                Button(action: {
-                    withAnimation(.easeInOut(duration: 0.5)) {
-                        selection = 1
+
+                Button(
+                    action: {
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            selection = 1
+                        }
+                    },
+                    label: {
+                        Text("Weekly Forecast")
                     }
-                }, label: {
-                    Text("Weekly Forecast")
-                })
+                )
                 .frame(minWidth: 0, maxWidth: .infinity)
             }
             .font(.subheadline.weight(.semibold))
             .foregroundColor(.secondary)
-            
+
             Divider()
                 .background(.white.opacity(0.5))
                 .blendMode(.overlay)
@@ -51,7 +50,7 @@ struct SegmentedControl: View {
                     .frame(maxWidth: .infinity, alignment: selection == 0 ? .leading : .trailing)
                     .offset(y: -1)
                 }
-            
+
         }
         .padding(.top, 25)
     }
