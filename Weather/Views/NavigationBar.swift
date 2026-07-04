@@ -2,19 +2,20 @@ import SwiftUI
 
 struct NavigationBar: View {
     @Binding var searchText: String
-    @Environment(\.dismiss) var dismiss
+    @Environment(WeatherStore.self) var store
 
     var body: some View {
         VStack(spacing: 8) {
             HStack {
-                // MARK: Back Button
+                // MARK: - Back Button
                 Button(
                     action: {
-                        dismiss()
+                        withAnimation(.easeInOut) {
+                            store.isShowingCityList = false
+                        }
                     },
                     label: {
                         HStack(spacing: 5) {
-                            // MARK: Back Button Icon
                             Image(systemName: "chevron.left")
                                 .font(.system(size: 23).weight(.medium))
                                 .foregroundColor(.secondary)
@@ -28,14 +29,14 @@ struct NavigationBar: View {
 
                 Spacer()
 
-                // MARK: More Button
+                // MARK: - More Button
                 Image(systemName: "ellipsis.circle")
                     .font(.system(size: 28))
                     .frame(width: 44, height: 44, alignment: .trailing)
             }
             .frame(height: 52)
 
-            // MARK: Search Bar
+            // MARK: - Search Bar
             HStack(
                 spacing: 2,
                 content: {
@@ -65,4 +66,5 @@ struct NavigationBar: View {
 
 #Preview {
     NavigationBar(searchText: .constant(""))
+        .environment(WeatherStore())
 }

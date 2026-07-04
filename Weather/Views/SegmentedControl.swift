@@ -5,11 +5,11 @@ struct SegmentedControl: View {
 
     var body: some View {
         VStack(spacing: 5) {
-            // MARK: Segmented Buttons
+            // MARK: - Segmented Buttons
             HStack {
                 Button(
                     action: {
-                        withAnimation(.easeInOut(duration: 0.5)) {
+                        withAnimation(.snappy(duration: 0.35)) {
                             selection = 0
                         }
                     },
@@ -21,7 +21,7 @@ struct SegmentedControl: View {
 
                 Button(
                     action: {
-                        withAnimation(.easeInOut(duration: 0.5)) {
+                        withAnimation(.snappy(duration: 0.35)) {
                             selection = 1
                         }
                     },
@@ -40,7 +40,7 @@ struct SegmentedControl: View {
                 .shadow(color: .black.opacity(0.2), radius: 0, x: 0, y: 1)
                 .blendMode(.overlay)
                 .overlay {
-                    // MARK: Underline
+                    // MARK: - Underline
                     HStack {
                         Divider()
                             .frame(width: UIScreen.main.bounds.width / 2, height: 3)

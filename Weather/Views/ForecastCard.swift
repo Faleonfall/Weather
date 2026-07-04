@@ -18,7 +18,7 @@ struct ForecastCard: View {
 
     var body: some View {
         ZStack {
-            // MARK: Card
+            // MARK: - Card
             RoundedRectangle(cornerRadius: 30)
                 .fill(Color.forecastCardBackground.opacity(isActive ? 1 : 0.2))
                 .frame(width: 60, height: 146)
@@ -27,7 +27,6 @@ struct ForecastCard: View {
                     radius: /*@START_MENU_TOKEN@*/ 10 /*@END_MENU_TOKEN@*/, x: 5, y: 4
                 )
                 .overlay {
-                    // MARK: Card Border
                     RoundedRectangle(cornerRadius: 30)
                         .strokeBorder(.white.opacity(isActive ? 0.5 : 0.2))
                         .blendMode(.overlay)
@@ -37,9 +36,8 @@ struct ForecastCard: View {
                     shape: RoundedRectangle(cornerRadius: 30), color: .white.opacity(0.25),
                     lineWidth: 1, offsetX: 1, offsetY: 1, blur: 0, blendMode: .overlay)
 
-            // MARK: Content
+            // MARK: - Content
             VStack(spacing: 16) {
-                // MARK: Forecast Date
                 Text(
                     forecast.date,
                     format: forecastPeriod == ForecastPeriod.hourly
@@ -48,10 +46,8 @@ struct ForecastCard: View {
                 .font(.subheadline.weight(.semibold))
 
                 VStack(spacing: -4) {
-                    // MARK: Forecast Small Icon
                     Image("\(forecast.icon) small")
 
-                    // MARK: Forecast Probability
                     Text(forecast.probability, format: .percent)
                         .font(.footnote.weight(.semibold))
                         .foregroundColor(Color.probabilityText)
@@ -59,7 +55,6 @@ struct ForecastCard: View {
                 }
                 .frame(height: 42)
 
-                // MARK: Forecast Temperature
                 Text(TemperatureFormat.degrees(forecast.temperature))
                     .font(.title3)
             }

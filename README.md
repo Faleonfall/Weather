@@ -3,6 +3,10 @@
 An iOS weather app with a draggable forecast sheet.
 Shows current conditions, an hourly timeline, a weekly outlook, and a list of cities.
 
+<p align="center">
+  <img src="docs/home.webp" alt="Home screen" width="320">
+</p>
+
 ---
 
 ## 🧭 Features

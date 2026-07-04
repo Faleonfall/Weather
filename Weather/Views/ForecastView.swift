@@ -7,10 +7,10 @@ struct ForecastView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                // MARK: Segmented Control
+                // MARK: - Segmented Control
                 SegmentedControl(selection: $selection)
 
-                // MARK: Forecast Card
+                // MARK: - Forecast Card
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 12) {
                         if selection == 0 {
@@ -31,7 +31,7 @@ struct ForecastView: View {
                 }
                 .padding(.horizontal, 20)
 
-                // MARK: Forecast Widgets
+                // MARK: - Forecast Widgets
                 Image("Forecast Widgets")
                     .opacity(bottomSheetTranlationProrated)
             }
@@ -45,7 +45,7 @@ struct ForecastView: View {
             opacity: 1 - bottomSheetTranlationProrated
         )
         .overlay {
-            // MARK: Bottom Sheet Separator
+            // MARK: - Bottom Sheet Separator
             Divider()
                 .blendMode(.overlay)
                 .background(Color.bottomSheetBorderTop)

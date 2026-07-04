@@ -1,23 +1,23 @@
 import SwiftUI
 
 struct TabBar: View {
+    @Environment(WeatherStore.self) var store
+
     var action: () -> Void
 
     var body: some View {
         ZStack {
-            // MARK: Arc Shape
+            // MARK: - Arc Shape
             Arc()
                 .fill(Color.tabBarBackground)
                 .frame(height: 88)
                 .overlay {
-                    //MARK: Arc Shape
                     Arc()
                         .stroke(Color.tabBarBorder, lineWidth: 0.5)
                 }
 
-            // MARK: Tab Items
+            // MARK: - Tab Items
             HStack {
-                // MARK: Expand Button
                 Button(
                     action: {
                         action()
@@ -31,9 +31,10 @@ struct TabBar: View {
 
                 Spacer()
 
-                // MARK: Navigation Button
-                NavigationLink {
-                    WeatherView()
+                Button {
+                    withAnimation(.easeInOut) {
+                        store.isShowingCityList = true
+                    }
                 } label: {
                     Image(systemName: "list.star")
                         .frame(width: 44, height: 44)
@@ -50,4 +51,5 @@ struct TabBar: View {
 
 #Preview {
     TabBar(action: {})
+        .environment(WeatherStore())
 }

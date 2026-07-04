@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct WeatherView: View {
+    @Environment(WeatherStore.self) var store
     @State private var searchText = ""
 
     var searchResults: [Forecast] {
@@ -9,11 +10,11 @@ struct WeatherView: View {
 
     var body: some View {
         ZStack {
-            // MARK: Background
+            // MARK: - Background
             Color.background
                 .ignoresSafeArea()
 
-            // MARK: Weather Widgets
+            // MARK: - Weather Widgets
             ScrollView(
                 showsIndicators: false,
                 content: {
@@ -21,7 +22,15 @@ struct WeatherView: View {
                         spacing: 20,
                         content: {
                             ForEach(searchResults) { forecast in
-                                WeatherWidget(forecast: forecast)
+                                Button {
+                                    store.currentForecast = forecast
+                                    withAnimation(.easeInOut) {
+                                        store.isShowingCityList = false
+                                    }
+                                } label: {
+                                    WeatherWidget(forecast: forecast)
+                                }
+                                .buttonStyle(.plain)
                             }
                         })
                 }
@@ -33,17 +42,13 @@ struct WeatherView: View {
 
         }
         .overlay(content: {
-            // MARK: Navigation Bar
+            // MARK: - Navigation Bar
             NavigationBar(searchText: $searchText)
         })
-        .navigationBarHidden(true)
-        //        .searchable(text: $searchText, prompt: "Search for a city or airport")
-        //        .foregroundColor(.white)
     }
 }
 
 #Preview {
-    NavigationView {
-        WeatherView()
-    }
+    WeatherView()
+        .environment(WeatherStore())
 }

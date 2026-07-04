@@ -7,25 +7,23 @@ struct WeatherWidget: View {
         ZStack(
             alignment: .bottom,
             content: {
-                // MARK: Trapezoid
+                // MARK: - Trapezoid
                 Trapezoid()
                     .fill(Color.weatherWidgetBackground)
                     .frame(width: 342, height: 174)
 
-                // MARK: Content
+                // MARK: - Content
                 HStack(
                     alignment: .bottom,
                     content: {
                         VStack(
                             alignment: .leading, spacing: 8,
                             content: {
-                                // MARK: Forecast Temperature
                                 Text(TemperatureFormat.degrees(forecast.temperature))
                                     .font(.system(size: 64))
                                 VStack(
                                     alignment: .leading, spacing: 2,
                                     content: {
-                                        // MARK: Forecast Temperature Range
                                         Text(
                                             TemperatureFormat.highLow(
                                                 high: forecast.high, low: forecast.low)
@@ -33,7 +31,6 @@ struct WeatherWidget: View {
                                         .font(.footnote)
                                         .foregroundColor(.secondary)
 
-                                        // MARK: Forecast Location
                                         Text(forecast.location)
                                             .font(.body)
                                             .lineLimit(1)
@@ -43,11 +40,9 @@ struct WeatherWidget: View {
                         Spacer()
 
                         VStack(alignment: .trailing, spacing: 0) {
-                            // MARK: Forecast Large Icon
                             Image("\(forecast.icon) large")
                                 .padding(.trailing, 4)
 
-                            // MARK: Weather
                             Text(forecast.weather.rawValue)
                                 .font(.footnote)
                                 .padding(.trailing, 24)
